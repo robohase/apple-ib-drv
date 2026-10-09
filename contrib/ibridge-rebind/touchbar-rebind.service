@@ -1,0 +1,12 @@
+[Unit]
+Description=Re-configure Apple iBridge USB device so the Touch Bar driver can bind
+After=systemd-modules-load.service
+ConditionPathExists=/sys/bus/usb/drivers/usb
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/touchbar-rebind.sh
+TimeoutStartSec=120
+
+[Install]
+WantedBy=multi-user.target

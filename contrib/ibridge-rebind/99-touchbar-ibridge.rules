@@ -1,0 +1,2 @@
+# Apple iBridge (T1) appeared -> run the re-configure service (also covers re-enumeration after resume)
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="05ac", ATTR{idProduct}=="8600", TAG+="systemd", ENV{SYSTEMD_WANTS}+="touchbar-rebind.service"
