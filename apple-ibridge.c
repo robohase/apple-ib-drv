@@ -577,12 +577,20 @@ static int appleib_probe(struct acpi_device *acpi)
 	return 0;
 }
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6,2,0)
+static void appleib_remove(struct acpi_device *acpi)
+{
+	hid_unregister_driver(&appleib_hid_driver);
+
+}
+#else
 static int appleib_remove(struct acpi_device *acpi)
 {
 	hid_unregister_driver(&appleib_hid_driver);
 
 	return 0;
 }
+#endif
 
 static int appleib_suspend(struct device *dev)
 {
